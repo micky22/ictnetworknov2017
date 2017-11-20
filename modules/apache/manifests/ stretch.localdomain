@@ -1,0 +1,2 @@
+node {'stretch.localdomain':
+include init.pp

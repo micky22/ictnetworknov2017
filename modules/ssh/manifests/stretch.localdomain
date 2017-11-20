@@ -1,0 +1,3 @@
+node 'stretch.localdomain'{
+include ssh
+}
