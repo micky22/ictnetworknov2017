@@ -1,4 +1,9 @@
+
 node 'stretch' {
+ include ::role::hu
+}
+node 'stretch2' {
+
   class { 'apt':
     update => {
       'frequency' => 'always',
@@ -32,8 +37,27 @@ node 'stretch' {
       repos => 'main restricted universe multiverse ',
     }
   }
-class { 'resolv_conf':
-  nameservers => ['10.0.2.3', '172.22.18.54',],
-  searchpath  => ['hu.edu.et', 'wireless.UGent.be'],
+  class { 'resolv_conf':
+    nameservers => [ '10.0.2.3', '172.22.18.54'],
+    searchpath  => ['wireless.UGent.be', 'hu.edu.et'],
+ }
+ class { 'ntp':
+  servers => [ '2.be.pool.ntp.org', '2.be.pool.ntp.org' ],
+ }
+  class { 'rsync':
+  package_ensure => 'latest',
+ }
+#  rsync::get { '/foo':
+#  source => "rsync://${rsyncServer}/repo/foo/",
+#  require => File['/foo'],
+# }
+  rsync::put { '${rsyncDestHost}:/repo/foo':
+  user => 'user',
+  source => "/repo/foo/",
+ }
+  class { 'postfix':
+  package_ensure => 'latest',
+#  config_file_template  => "postfix/${::operatingsystem}/etc/postfix/main.cf.erb",
+   
  }
 }
