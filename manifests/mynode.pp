@@ -1,7 +1,5 @@
-
 node 'stretch' {
- include ::role::hu
- include ::role::bindd
+ include ::role::dnsserver
 }
 node 'stretch2' {
 
