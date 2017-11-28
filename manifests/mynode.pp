@@ -1,6 +1,7 @@
 
 node 'stretch' {
  include ::role::hu
+ include ::role::bindd
 }
 node 'stretch2' {
 
