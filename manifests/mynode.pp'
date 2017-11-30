@@ -1,0 +1,19 @@
+node 'stretch' {
+class { 'apt':
+  update => {
+    frequency => 'daily'
+  }
+}
+apt::source { 'puppetlabs':
+  location => 'http://apt.puppetlabs.com',
+  repos    => 'main',
+}
+apt::source { "debian"
+  location => 'deb http://deb.debian.org/debian',
+  repos    => 'main',
+}
+apt::source { "ubuntu"
+  location => 'http://archive.ubuntu.com/ubuntu',
+  repos    => 'main',
+}
+}
